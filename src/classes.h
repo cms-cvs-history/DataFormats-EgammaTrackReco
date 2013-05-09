@@ -21,9 +21,9 @@
 #include "DataFormats/CaloRecHit/interface/CaloClusterFwd.h" 
 #include "DataFormats/EgammaTrackReco/interface/ConversionTrack.h" 
 #include "DataFormats/EgammaTrackReco/interface/ConversionTrackFwd.h" 
-
-
+#include "DataFormats/Common/interface/AssociationMap.h"
 #include "DataFormats/Common/interface/Wrapper.h"
+#include "DataFormats/EgammaTrackReco/interface/GsfTrackToBremConvTracksMapFwd.h"
 
 namespace {
   struct dictionary {
@@ -48,7 +48,11 @@ namespace {
 
     reco::ConversionTrackCollection v11;
     edm::Wrapper<reco::ConversionTrackCollection> m11;    
-    
+
+    edm::AssociationMap<edm::OneToMany<std::vector<reco::GsfTrack>,std::vector<reco::Track>,unsigned int> > am100;
+    edm::helpers::KeyVal<edm::RefProd<reco::GsfTrackCollection>,edm::RefProd<std::vector<reco::Track> > > amh100;  
+    edm::Wrapper<edm::AssociationMap<edm::OneToMany<std::vector<reco::GsfTrack>,std::vector<reco::Track>,unsigned int> > > amw100;
+
   };
 }
 
